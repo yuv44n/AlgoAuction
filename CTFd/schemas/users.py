@@ -54,6 +54,7 @@ class UserSchema(ma.ModelSchema):
     country = field_for(Users, "country", validate=[validate_country_code])
     password = field_for(Users, "password", required=True, allow_none=False)
     bracket_id = field_for(Users, "bracket_id")
+    algorithms = field_for(Users, "algorithms")
     fields = Nested(
         UserFieldEntriesSchema, partial=True, many=True, attribute="field_entries"
     )
@@ -400,6 +401,7 @@ class UserSchema(ma.ModelSchema):
             "type",
             "verified",
             "change_password",
+            "algorithms",
             "fields",
             "team_id",
         ],

@@ -364,6 +364,12 @@ def static_html(route):
         return render_template("page.html", content=page.html, title=page.title)
 
 
+@views.route("/algos")
+def algos():
+    users = Users.query.filter_by(banned=False, hidden=False).all()
+    return render_template("algos.html", users=users)
+
+
 @views.route("/tos")
 def tos():
     tos_url = get_config("tos_url")

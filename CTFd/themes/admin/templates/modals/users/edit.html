@@ -29,6 +29,10 @@
 		{{ form.country.label }}
 		{{ form.country(class="form-control custom-select", autocomplete="off") }}
 	</div>
+	<div class="form-group">
+		{{ form.algorithms.label }}
+		{{ form.algorithms(class="form-control", autocomplete="off") }}
+	</div>
 
 	{{ render_extra_fields(form.extra) }}
 

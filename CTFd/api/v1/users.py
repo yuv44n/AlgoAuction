@@ -228,6 +228,7 @@ class UserPublic(Resource):
         user = Users.query.filter_by(id=user_id).first_or_404()
         data = request.get_json()
         data["id"] = user_id
+        print(f"DEBUG: Received data: {data}")
 
         # Admins should not be able to ban themselves
         if data["id"] == session["id"] and (
@@ -240,6 +241,9 @@ class UserPublic(Resource):
 
         schema = UserSchema(view="admin", instance=user, partial=True)
         response = schema.load(data)
+        print(f"DEBUG: Schema load errors: {response.errors}")
+        print(f"DEBUG: Loaded data: {response.data}")
+        print(f"DEBUG: After load, user.algorithms: {user.algorithms}")
         if response.errors:
             return {"success": False, "errors": response.errors}, 400
 
@@ -248,6 +252,7 @@ class UserPublic(Resource):
         # the polymorphic identity resulting in an ObjectDeletedError
         # https://github.com/CTFd/CTFd/issues/1794
         response = schema.dump(response.data)
+        print(f"DEBUG: Final data: {response.data}")
         db.session.commit()
         db.session.close()
 
