@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+  <div class="container">
+    <h1>Algorithms</h1>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" style="text-align: center;">
+      <h3>Registered Users</h3>
+      <ul class="list-group">
+        {% for user in users %}
+        <li class="list-group-item" style="background-color: transparent; border-color: rgba(255, 255, 255, 0.100);">{{ user.name }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-6" style="text-align: center;">
+      <h3>Algorithms Bought</h3>
+        <div class="list-group-item" style="background-color: transparent; border-color: rgba(255, 255, 255, 0.100);">
+          {% for user in users %}
+          <div>
+            <strong></strong>
+            {% if user.algorithms %}
+              {{ user.algorithms }}
+            {% else %}
+              None
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
