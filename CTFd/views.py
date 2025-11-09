@@ -364,6 +364,24 @@ def static_html(route):
         return render_template("page.html", content=page.html, title=page.title)
 
 
+@views.route("/algos")
+def algos():
+    # Now that the `algorithms` column exists in the DB, select it and pass
+    # the real value to the template so it displays what is stored.
+    rows = (
+        db.session.query(Users.id, Users.name, Users.algorithms)
+        .filter_by(banned=False, hidden=False)
+        .all()
+    )
+    users = []
+    for row in rows:
+        # row is a tuple (id, name, algorithms)
+        users.append(
+            {"id": row[0], "name": row[1], "algorithms": row[2] or ""}
+        )
+    return render_template("algos.html", users=users)
+
+
 @views.route("/tos")
 def tos():
     tos_url = get_config("tos_url")

@@ -360,6 +360,7 @@ class UserSchema(ma.ModelSchema):
         "user": [
             "website",
             "name",
+            "algorithms",
             "country",
             "affiliation",
             "bracket_id",
@@ -371,6 +372,7 @@ class UserSchema(ma.ModelSchema):
         "self": [
             "website",
             "name",
+            "algorithms",
             "email",
             "language",
             "country",
@@ -386,6 +388,7 @@ class UserSchema(ma.ModelSchema):
             "website",
             "name",
             "created",
+            "algorithms",
             "country",
             "banned",
             "email",
